@@ -1,0 +1,16 @@
+{
+  "name": "experimental-projects",
+  "version": "1.0.0",
+  "main": "Sys_Monitor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "commander": "^14.0.0",
+    "systeminformation": "^5.27.7"
+  }
+}
