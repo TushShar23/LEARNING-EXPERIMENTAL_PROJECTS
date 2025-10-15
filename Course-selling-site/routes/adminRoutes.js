@@ -140,6 +140,8 @@ adminRouter.put("/course",adminMiddleware,async(req,res)=>{
     res.json({
         message:"Course updated successfully!"
     })
+
+    // it will not update the course which doesnot have userId as adminID and courseId as given courseID
     
     // res.send({
     //     message:"/admin/course update a course endpoint"
