@@ -124,7 +124,7 @@ adminRouter.put("/course",adminMiddleware,async(req,res)=>{
     const adminId = req.adminId;
     const {newtitle,newdescription,newprice,newimageURL,courseId} = req.body;
 
-    await courseModel.updateOne({
+    const courseUpdate = await courseModel.updateOne({
         creatorID: adminId,
         _id: courseId // we are searching in courseModel so it has objectId property denoted by "_id" 
 
@@ -136,10 +136,21 @@ adminRouter.put("/course",adminMiddleware,async(req,res)=>{
         price: newprice,
         imageURL: newimageURL
     })
+    
 
-    res.json({
-        message:"Course updated successfully!"
-    })
+    // courseupdate will contain an object returned by the updateOne function.So if the matchedCount key's value is 0 then it means no such course is found in the DB whether we have provided the wrong creatorID or coursId
+    if(courseUpdate.matchedCount){
+        res.json({
+            message:"Course updated successfully!"
+        })
+    }
+    else{
+        res.json({
+            message:"No such course found in our DB!"
+        })
+    }
+
+    
 
     // it will not update the course which doesnot have userId as adminID and courseId as given courseID
     
