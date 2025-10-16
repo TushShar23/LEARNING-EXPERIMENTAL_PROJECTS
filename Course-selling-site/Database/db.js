@@ -23,8 +23,8 @@ const CourseSchema = new Schema({
 })
 
 const PurchasesSchema = new Schema({
-    userID: Schema.Types.ObjectId,
-    courseID: Schema.Types.ObjectId
+    userID: {type:Schema.Types.ObjectId, ref:"courseUsers"},
+    courseID: {type:Schema.Types.ObjectId,ref:"courses"}
 })
 
 
