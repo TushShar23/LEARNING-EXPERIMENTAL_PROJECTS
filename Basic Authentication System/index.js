@@ -2,7 +2,7 @@ import express from 'express';
 import userRouter from "./Routes/UserRoutes.js";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
-// import adminRouter from './Routes/AdminRoutes,js';
+import adminRouter from './Routes/AdminRoutes.js';
 
 dotenv.config();
 
@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/v1/user',userRouter);
-// app.use('/api/v1/admin',adminRouter);
+app.use('/api/v1/admin',adminRouter);
 
 
 function main(){
