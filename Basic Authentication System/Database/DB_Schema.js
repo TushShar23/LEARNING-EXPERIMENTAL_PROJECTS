@@ -10,17 +10,17 @@ const User = new Schema({
     email:{type:String,unique:true},
     username:{type:String,unique:true},
     password:{type:String,unique:true},
-    age:{type:Number}
 })
 
 const Admin = new Schema({
+    adminID:{type:Number},
     email:{type:String,unique:true},
     username:{type:String,unique:true},
     password:{type:String,unique:true}
 })
 
-const UserModel = mongoose.model('Users-Data',User,'Users-Data');
-const AdminModel = mongoose.model('Admins-Data',Admin,'Admins-Data');
+const UserModel = mongoose.model('simpleAuthUsers',User,'simpleAuthUsers');
+const AdminModel = mongoose.model('simpleAuthAdmins',Admin,'simpleAuthAdmins');
 
 export {UserModel,AdminModel};
 
