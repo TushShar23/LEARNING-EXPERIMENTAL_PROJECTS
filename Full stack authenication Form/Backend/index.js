@@ -1,15 +1,18 @@
 import express from "express"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
+import UserRouter from "./Routes/UserRoutes.js"
 
 
 dotenv.config()
 
 const app = express()
+app.use(express.json())
 
 
-// app.use("/api/v1/SignUp")
-// app.use("/api/v1/SignIn")
+app.use("/api/v1/user",UserRouter)
+// app.use("/api/v1/user")
+
 // app.use()
 
 function main(){

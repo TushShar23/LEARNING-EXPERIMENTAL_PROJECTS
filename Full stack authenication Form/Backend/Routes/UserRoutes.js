@@ -4,7 +4,7 @@
 
 import { Router } from "express"
 import express from "express"
-import { UserModel } from "../DB/Db"
+import { UserModel } from "../DB/Db.js"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
@@ -22,9 +22,9 @@ UserRouter.post('/signup',async(req,res)=>{
     const reqbody = z.object({
         firstname: z.string().min(3).max(50),
         lastname: z.string().min(3).max(50),
-        email: z.email().min(15).max(100),// z.string().email is deprecated but z.email() is not
+        email: z.email().min(8).max(100),// z.string().email is deprecated but z.email() is not
         password: z.string().min(8).max(50),
-        phone:z.refine(v.isMobilePhone).min(10,{error:"Must be a valid mobile number"})
+        phone:z.string().refine(v.isMobilePhone).min(10,{error:"Must be a valid mobile number"})
         //The".refine()" method in Zod is used to add custom validation logic to a schema that goes beyond Zod's built-in validation methods. It provides a way to implement highly specific rules or perform validation that depends on multiple fields within an object. 
     })
 
@@ -49,15 +49,15 @@ UserRouter.post('/signup',async(req,res)=>{
         const phone = req.body.phone
 
 
-        const hashPass = bcrypt.hash(password,5);
+        const hashPass = await bcrypt.hash(password,5);
 
         try {
             await UserModel.insertOne({
-                Firstname:firstname,
-                Lastname:lastname,
-                Email:email,
-                Password:hashPass,
-                Phone:phone
+                firstname:firstname,
+                lastname:lastname,
+                email:email,
+                password:hashPass,
+                phone:phone
             })
 
             res.json({
@@ -65,7 +65,7 @@ UserRouter.post('/signup',async(req,res)=>{
             })
         } catch (error) {
             res.json({
-                message:"Error while inserting data into DB!!!"
+                message:`${error}`
             })
         }
 
@@ -81,11 +81,11 @@ UserRouter.post("/signin",async(req,res)=>{
     const password = req.body.password
 
     const userFound = await UserModel.findOne({
-        Email:email
+        email:email
     })
 
     if(userFound){
-        const passMatch = bcrypt.compare(password,userFound.password)
+        const passMatch = await bcrypt.compare(password,userFound.password)
 
         if(passMatch){
             const token = jwt.sign({
@@ -116,7 +116,7 @@ UserRouter.post("/signin",async(req,res)=>{
 
 })
 
-export {UserRouter}
+export default UserRouter
 
 
 /*
