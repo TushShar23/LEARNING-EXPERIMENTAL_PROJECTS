@@ -25,7 +25,7 @@ UserRouter.post('/signup',async(req,res)=>{
         email: z.email().min(8).max(100),// z.string().email is deprecated but z.email() is not
         password: z.string().min(8).max(50),
         phone:z.string().refine(v.isMobilePhone).min(10,{error:"Must be a valid mobile number"})
-        //The".refine()" method in Zod is used to add custom validation logic to a schema that goes beyond Zod's built-in validation methods. It provides a way to implement highly specific rules or perform validation that depends on multiple fields within an object. 
+        //The".refine()" method in Zod is used to add custom validation logic to a schema that goes beyond Zod's built-in validation methods. It provides a way to implement highly specific rules or perform validation that depends on multiple fields within an object.It works ONLY WITH STRING 
     })
 
     const parsedBody = reqbody.safeParse(req.body)
