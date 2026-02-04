@@ -61,6 +61,7 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
 }
 
 button{
@@ -78,4 +79,9 @@ button:active{
 
 label{
     font-size: 16px;
+}
+
+outputmsge p{
+    font-size: 18px;
+    color: black;
 }

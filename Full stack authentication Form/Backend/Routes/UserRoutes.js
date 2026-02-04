@@ -10,12 +10,14 @@ import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 import z from "zod"
 import v from "validator"
+import cors from "cors"
 
 dotenv.config()
 
 const UserRouter = Router()
 
 UserRouter.use(express.json())
+UserRouter.use(cors())
 
 UserRouter.post('/signup',async(req,res)=>{
     //validation using zod,validator.js
