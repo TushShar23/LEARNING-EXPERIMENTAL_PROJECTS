@@ -109,17 +109,26 @@ UserRouter.post("/signin",async(req,res)=>{
             },process.env.JWT_SECRET)
 
             res.json({
-                token : token
+                token : token,
+                success:true,
+                name:{
+                    firstname : userFound.firstname,
+                    lastname: userFound.lastname
+                }
             })
         }
         else{
             res.json({
-                Message:"Password does not match"
+                success:false,
+                message:"Password does not match"
             })
         }
     }
     else{
-        res.sendStatus(403)
+        res.status(403).send({
+            success:false,
+            message:"user does not exist in our DB!"
+        })
         //OR
 
         // CUSTOM MESSAGE

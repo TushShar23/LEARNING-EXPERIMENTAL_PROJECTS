@@ -7,12 +7,35 @@ export const LoginForm = ()=>{
         password:""
     })
 
+    const [msge,setMsge] = useState("")
+
     const handleSubmit = (e)=>{
         e.preventDefault()
+        sendData()
+    }
 
-        fetch('')
-       
-
+    const sendData = ()=>{
+        fetch('http://localhost:3000/api/v1/user/signin',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(user)
+        })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((data)=>{
+            if(data.success){
+                setMsge(data.name)
+            }
+            else{
+                setMsge(data.message)
+            }
+        })
+        .catch((err)=>{
+            setMsge("SOMETHING WENT WRONG WHILE LOGGING IN!!")
+        })
     }
 
     const handleInput = (e)=>{
@@ -34,7 +57,7 @@ export const LoginForm = ()=>{
 
         <section className="password">
                 <label htmlFor="password">
-                    <strong>Last Name</strong>
+                    <strong>Password</strong>
                 </label>
                 <input name="password" type="password" placeholder="Enter your password" id="lname" value={user.password} onChange={(e)=>handleInput(e)}/>
         </section>
@@ -44,7 +67,7 @@ export const LoginForm = ()=>{
         </section>
 
         <section className="outputmsge">
-            {msge && <p>{msge}</p>}
+            {msge && <p>{JSON.stringify(msge)}</p>}
             {/* empty string is also a FALSY VALUE */}
         </section>
 
