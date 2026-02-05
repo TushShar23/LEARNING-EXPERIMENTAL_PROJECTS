@@ -52,7 +52,7 @@ export const SignUpForm = ()=>{
     }
 
     return(
-             <form onSubmit={(e)=>handleSubmit(e)}>
+        <form onSubmit={(e)=>handleSubmit(e)}>
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account</p>
 

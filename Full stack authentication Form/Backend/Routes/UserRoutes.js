@@ -50,26 +50,40 @@ UserRouter.post('/signup',async(req,res)=>{
         const password = req.body.password
         const phone = req.body.phone
 
+        const userFound = await UserModel.findOne({
+            email : email
+        })
 
-        const hashPass = await bcrypt.hash(password,5);
-
-        try {
-            await UserModel.insertOne({
-                firstname:firstname,
-                lastname:lastname,
-                email:email,
-                password:hashPass,
-                phone:phone
-            })
-
+        if(userFound){
             res.json({
-                message:"User Signed Up successfully!"
-            })
-        } catch (error) {
-            res.json({
-                message:`${error}`
+                message:"User already exist.Please Login!"
             })
         }
+        else{
+            
+            const hashPass = await bcrypt.hash(password,5);
+            
+            try {
+                await UserModel.insertOne({
+                    firstname:firstname,
+                    lastname:lastname,
+                    email:email,
+                    password:hashPass,
+                    phone:phone
+                })
+
+                res.json({
+                    message:"User Signed Up successfully!"
+                })
+            } catch (error) {
+                res.json({
+                    message:`${error}`
+                })
+            }
+
+
+        }
+
 
     }
 
