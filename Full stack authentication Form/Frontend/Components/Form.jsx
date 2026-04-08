@@ -10,8 +10,8 @@ export const Form = ()=>{
 
     const changeState = (e)=>{
         e.preventDefault()
-        setState((prev)=>(!prev))//implicit return so no need to put in curly braces(it means we have write return explicitly)
-        setSignup((prev)=>(!prev)) //implicit return so no need to put in curly braces(it means we have write return explicitly) 
+        setState((prev)=>(!prev))//implicit return so no need to put in curly braces(it means we have to write return explicitly)
+        setSignup((prev)=>(!prev)) //implicit return so no need to put in curly braces(it means we have to write return explicitly) 
     }
 
     return(
