@@ -8,6 +8,8 @@ export const Standard = ({setBmi})=>{
         height:""
     })
 
+  
+
     const handleSubmit = (e)=>{
         e.preventDefault()
 

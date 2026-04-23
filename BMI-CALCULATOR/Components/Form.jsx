@@ -9,15 +9,22 @@ export function Form() {
   const [showform,setShowForm] = useState("Standard");
 
   // i want to show the BMI state in the form so i lifted the state "BMI" and sent the setBmi updator function as prop to the component.
-
-  const [Bmi,setBmi] = useState({
-        BMI_Val:"",
-        BMI_msge:""
+    const [Bmi,setBmi] = useState({
+      BMI_Val:"",
+      BMI_msge:""
     })
+
+  
 
   function changeForm(e){
     setShowForm(e.target.id)
     // this e.target.id will give the name of the button clicked
+
+    setBmi({
+      BMI_Val:"",
+      BMI_msge:""
+    })
+    // this is for resetting the BMI state to null values coz when we change the form type we need that result screen should be clear at that moment so for that we reset the state values.
   }
 
   return (
@@ -28,7 +35,7 @@ export function Form() {
         <button onClick={(e)=>changeForm(e)} id='Metric'>Metric</button>
       </div>
 
-      {showform === "Standard" ? <Standard setBmi = {setBmi}/> : <Metric/>}
+      {showform === "Standard" ? <Standard setBmi={setBmi}/> : <Metric setBmi={setBmi}/>}
 
       <div className="res">
         <h3>{Bmi.BMI_Val}</h3>
