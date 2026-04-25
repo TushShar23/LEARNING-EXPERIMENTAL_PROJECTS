@@ -1,0 +1,39 @@
+
+form{
+    border: 1px dotted white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    border-radius: 5px;
+}
+.fields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 27px;
+}
+.fields input{
+    height: 35px;
+    width: 200px;
+    padding:0rem 1rem;
+    font-size: 16px;
+}
+
+.weight ,.height{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#calculate{
+    height: 35px;
+    width: 150px;
+    font-weight: bold;
+}
+

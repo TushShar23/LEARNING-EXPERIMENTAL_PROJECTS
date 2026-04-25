@@ -1,8 +1,8 @@
 import { useState } from "react"
-import "../src/Standard.css"
+import "../src/Global.css"
 
 
-export const Standard = ({setBmi})=>{
+export const Standard = ({setBmi,setClick})=>{
     const [userData,setUserdata] = useState({
         weight:"",
         height:""
@@ -42,6 +42,7 @@ export const Standard = ({setBmi})=>{
                 BMI_Val:finalRes,
                 BMI_msge:message
             })
+
         }
 
 
@@ -66,21 +67,24 @@ export const Standard = ({setBmi})=>{
 
     return(
        <form onSubmit={(e)=>handleSubmit(e)}>
-        <section className="weight">
-            <label htmlFor="Weight">
-                <strong>Weight(lbs)</strong>
-            </label>
-            <input type="text" placeholder="Enter your weight" id="Weight" name="weight" value={userData.weight} onChange={(e)=>handleInput(e)}/>
-        </section>
+        <section className="fields">
+            <section className="weight">
+                <label htmlFor="Weight">
+                    <strong>Weight(lbs) </strong>
+                </label>
+                <input type="text" placeholder="Enter your weight" id="Weight" name="weight" value={userData.weight} onChange={(e)=>handleInput(e)}/>
+            </section>
 
-        <section className="height">
-            <label htmlFor="Height">
-                <strong>Height(in)</strong>
-            </label>
-            <input type="text" placeholder="Enter your height" id="Height" name="height" value={userData.height} onChange={(e)=>handleInput(e)}/>
+            <section className="height">
+                <label htmlFor="Height">
+                    <strong>Height(in) </strong>
+                </label>
+                <input type="text" placeholder="Enter your height" id="Height" name="height" value={userData.height} onChange={(e)=>handleInput(e)}/>
+            </section>
         </section>
+        
 
-        <button id="calculate" type="submit">CALCULATE</button>
+        <button id="calculate" type="submit" onClick={setClick(true)}>CALCULATE</button>
        </form>
     )
 }

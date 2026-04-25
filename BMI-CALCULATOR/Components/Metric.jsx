@@ -1,6 +1,7 @@
 import { useState } from "react"
+import "../src/Global.css"
 
-export const Metric = ({setBmi})=>{
+export const Metric = ({setBmi,setClick})=>{
 
     const [userData,setUserdata] = useState({
         height:"",
@@ -51,21 +52,26 @@ export const Metric = ({setBmi})=>{
 
     return(
         <form onSubmit={(e)=>handleSubmit(e)}>
-        <section className="weight">
-            <label htmlFor="Weight">
-                <strong>Weight(kg)</strong>
-            </label>
-            <input type="text" placeholder="Enter your weight" id="Weight" name="weight" value={userData.weight} onChange={(e)=>handleInput(e)}/>
-        </section>
 
-        <section className="height">
-            <label htmlFor="Height">
-                <strong>Height(m)</strong>
-            </label>
-            <input type="text" placeholder="Enter your height" id="Height" name="height" value={userData.height} onChange={(e)=>handleInput(e)}/>
-        </section>
+        <section className="fields">
+            <section className="weight">
+                <label htmlFor="Weight">
+                    <strong>Weight(kg)</strong>
+                </label>
+                <input type="text" placeholder="Enter your weight" id="Weight" name="weight" value={userData.weight} onChange={(e)=>handleInput(e)}/>
+            </section>
 
-        <button id="calculate" type="submit">CALCULATE</button>
+            <section className="height">
+                <label htmlFor="Height">
+                    <strong>Height(m)</strong>
+                </label>
+                <input type="text" placeholder="Enter your height" id="Height" name="height" value={userData.height} onChange={(e)=>handleInput(e)}/>
+            </section>
+
+        </section>
+        
+
+        <button id="calculate" type="submit" onClick={setClick(true)}>CALCULATE</button>
        </form>
     )
 }
